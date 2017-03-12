@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id='example'>
+        <my-component></my-component>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <simple-counter></simple-counter>
+        <input v-model="msg">
+        <br>
+        <child :message='msg'></child>
+        <br>
+        <p>{{total}}</p>
+        <button-counter v-on:increment="incrementTotal">
+
+        </button-counter>
+        <button-counter v-on:increment="incrementTotal">
+
+        </button-counter>
+    </div>
+</body>
+<script>
+    // Vue.component('my-component', {
+    //     template: '<div>A custom component</div>'
+    // });
+    var child = {
+        template: '<div>A partion custom component</div>'
+    };
+    var child2 = {
+        template: '<button v-on:click="counter += 1">{{ counter }}</button>',
+        data: function () {
+            return { counter: 0 };;
+        }
+    };
+    var child3 = {
+        template: '<span>{{message}}</span>',
+        props: ['message']
+    };
+    var child4 = {
+        template: "<button v-on:click='increment'>{{counter}}</button>",
+        data: function () {
+            return { counter: 0 }
+        },
+        methods: {
+            increment: function () {
+                this.counter += 1;
+                this.$emit('increment');
+            }
+        }
+    };
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            msg: 'test',
+            total: 0
+        },
+        components: {
+            'my-component': child,
+            'simple-counter': child2,
+            'child': child3,
+            'button-counter': child4
+        },
+        methods: {
+            incrementTotal: function () {
+                this.total += 1;
+            }
+        }
+    });
+
+</script>
+
+</html>

@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div>
+        <ul id='example-1'>
+            <li v-for="(item,index) of items">
+                {{index}} 、{{item.message}}
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+    var e1 = new Vue({
+        el: '#example-1',
+        data: {
+            items: [
+                { message: 'Foo' },
+                { message: 'Bar' }
+            ]
+        }
+    });
+
+</script>
+
+</html>

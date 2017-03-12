@@ -1,0 +1,75 @@
+<html>
+
+<head>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <style>
+        body {
+            font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='test1'>
+        <input v-model="message" placeholder="edit me">
+        <p>Message is: {{ message }}</p>
+        <input type="checkbox" id='checkbox' v-model="checked">
+        <label for="checkbox">{{checked}}</label>
+        <br>
+        <input type="checkbox" id='Jack' value='Jack' v-model="checkedNames">
+        <label for="Jack">Jack</label>
+        <input type="checkbox" id='John' value="John" v-model="checkedNames">
+        <label for="John">John</label>
+        <input type="checkbox" id='Mike' value="Mike" v-model="checkedNames">
+        <label for="Mike">Mike</label>
+        <br>
+        <span>
+            Checked names :{{checkedNames}}
+        </span>
+        <br>
+        <input type="radio" id='one' value='One' v-model="picked">
+        <label for="one">One</label>
+        <input type="radio" id='two' value="Two" v-model="picked" v-bind:value="a">
+        <label for="two">Two</label>
+        <br>
+        <span>Picked:{{picked}}</span>
+        <br>
+        <select v-model="selected" multiple>
+            <option>A</option>
+            <option>B</option>
+            <option>C</option>
+        </select>
+        <span>Selected: {{ selected }}</span>
+        <br>
+        <select v-model="selected2">
+            <option v-for="(option,index) in options" 
+            v-bind:value="option.value">
+            {{option.text}}
+            </option>
+        </select>
+        <br>
+        <input type="text" v-model.lazy.number.trim="msg">
+        {{msg}}
+    </div>
+</body>
+<script>
+    var test1 = new Vue({
+        el: '#test1',
+        data: {
+            msg:'',
+            message: '',
+            checked: false,
+            checkedNames: [],
+            picked: '',
+            selected: [],
+            options: [
+                { text: 'One', value: 'A' },
+                { text: 'Two', value: 'B' },
+                { text: 'Three', value: 'C' }
+            ]
+        }
+    });
+
+</script>
+
+</html>
