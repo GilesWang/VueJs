@@ -22,11 +22,61 @@
 
         </button-counter>
     </div>
+    <div id='example-2'>
+        <p>{{total}}</p>
+        <button-counter2 v-on:increment='incrementTotal'></button-counter2>
+        <button-counter2 v-on:increment='incrementTotal'></button-counter2>
+    </div>
+    <div id='example-3'>
+        <div>
+            <h1>我是父组件的标题</h1>
+            <my-component>
+                <p slot="header">这是一些初始内容</p>
+                <p>这是更多的初始内容</p>
+            </my-component>
+        </div>
+    </div>
 </body>
 <script>
-    // Vue.component('my-component', {
-    //     template: '<div>A custom component</div>'
-    // });
+    var example3 = new Vue({
+        el: '#example-3',
+        components: {
+            'my-component': {
+                template: '<div><h2>我是子组件的标题</h2><slot name="header">只有在没有要分发的内容时才会显示。</slot><slot></slot></div>'
+            }
+        }
+    });
+
+</script>
+<script>
+    Vue.component('button-counter2', {
+        template: '<button v-on:click="increment">{{counter}}</button>',
+        data: function () {
+            return {
+                counter: 0
+            };
+        },
+        methods: {
+            increment: function () {
+                this.counter += 1;
+                this.$emit('increment');
+            }
+        }
+    });
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            total: 0
+        },
+        methods: {
+            incrementTotal: function () {
+                this.total += 1;
+            }
+        }
+    });
+
+</script>
+<script>
     var child = {
         template: '<div>A partion custom component</div>'
     };
