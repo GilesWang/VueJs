@@ -1,7 +1,8 @@
 <html>
 
 <head>
-    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="../vue.js" ></script>
+    <script src='../js/component.js'></script>
 </head>
 
 <body>
@@ -21,6 +22,8 @@
         <button-counter v-on:increment="incrementTotal">
 
         </button-counter>
+
+        <example></example>
     </div>
     <div id='example-2'>
         <p>{{total}}</p>
@@ -36,6 +39,7 @@
             </my-component>
         </div>
     </div>
+    
 </body>
 <script>
     var example3 = new Vue({
